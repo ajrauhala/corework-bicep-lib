@@ -1,0 +1,20 @@
+
+trigger: none
+
+pool:
+  name: vmss-devops-infra-01
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Deploy container registry'
+  inputs:
+    deploymentScope: 'Resource Group'
+    action: 'Create Or Update Resource Group,'
+    azureResourceManagerConnection: 'serviceconn-vssub'
+    subscriptionId: 'd74666f0-bce7-4f76-bb70-c58f3b3c7bbe'
+    resourceGroupName: 'rg-devops-infra'
+    location: 'West Europe'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(Pipeline.Workspace)/modules/container-registry.bicep'
+    overrideParameters: '-name acrdevopscore2024 -sku Premium'
+    deploymentMode: Incremental
