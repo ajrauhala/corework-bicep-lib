@@ -9,7 +9,7 @@ steps:
   displayName: 'Deploy container registry'
   inputs:
     deploymentScope: 'Resource Group'
-    action: 'Create Or Update Resource Group,'
+    action: 'Create Or Update Resource Group'
     azureResourceManagerConnection: 'serviceconn-vssub'
     subscriptionId: 'd74666f0-bce7-4f76-bb70-c58f3b3c7bbe'
     resourceGroupName: 'rg-devops-infra'
