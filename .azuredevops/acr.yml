@@ -15,6 +15,6 @@ steps:
     resourceGroupName: 'rg-devops-infra'
     location: 'West Europe'
     templateLocation: 'Linked artifact'
-    csmFile: '$(Pipeline.Workspace)/modules/container-registry.bicep'
+    csmFile: '**/modules/container-registry.bicep'
     overrideParameters: '-name acrdevopscore2024 -sku Premium'
     deploymentMode: Incremental
