@@ -44,7 +44,7 @@ steps:
     inlineScript: |
       for filename in ./*.bicep; do
         [ -e "$filename" ] || continue
-        $moduleName = $(basename $filename)
-        echo "Pushing file $moduleName into $(acrUrl)
+        moduleName = $(basename $filename)
+        echo "Pushing file $moduleName into $(acrUrl)"
         az bicep publish --file $module.FullName --target br:$(acrUrl)/bicep/modules/${$moduleName}
       done
