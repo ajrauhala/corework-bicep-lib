@@ -5,19 +5,19 @@ pool:
   name: vmss-devops-infra-01
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'serviceconn-vssub'
-    scriptType: 'pscore'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      $modules = Get-ChildItem -Path ../Modules/*.bicep -Recurse -Include *.bicep
-      foreach ($module in $modules)
-      {
-            $moduleName = $module.BaseName.ToLower()
-            Write-Host "Adding new module ${moduleName} with version $version"
-            az bicep publish --file $module.FullName --target br:acrdevopscore2024.azurecr.io/bicep/modules/${$moduleName}
-      }
+#- task: AzureCLI@2
+#  inputs:
+#    azureSubscription: 'serviceconn-vssub'
+#    scriptType: 'pscore'
+#    scriptLocation: 'inlineScript'
+#    inlineScript: |
+#      $modules = Get-ChildItem -Path ../Modules/*.bicep -Recurse -Include *.bicep
+#      foreach ($module in $modules)
+#      {
+#            $moduleName = $module.BaseName.ToLower()
+#            Write-Host "Adding new module ${moduleName} with version $version"
+#            az bicep publish --file $module.FullName --target br:acrdevopscore2024.azurecr.io/bicep/modules/${$moduleName}
+#      }
 
 - task: AzureCLI@2
   inputs:
