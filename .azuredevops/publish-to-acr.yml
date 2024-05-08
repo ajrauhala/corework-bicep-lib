@@ -4,6 +4,10 @@ trigger:
 pool:
   name: vmss-devops-infra-01
 
+parameters:
+- name: acrUrl
+  type: string
+  default: acrdevopscore2024.azurecr.io
 steps:
 #- task: AzureCLI@2
 #  inputs:
@@ -27,5 +31,7 @@ steps:
     inlineScript: |
       for filename in ./*.bicep; do
         [ -e "$filename" ] || continue
-        echo $(basename $filename)
+        $moduleName = $(basename $filename)
+        echo "Pushing file $moduleName into $(acrUrl)
+        az bicep publish --file $module.FullName --target br:$(acrUrl)/bicep/modules/${$moduleName}
       done
