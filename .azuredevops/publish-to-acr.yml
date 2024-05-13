@@ -19,7 +19,7 @@ steps:
     inlineScript: |
       for filename in $(Build.Repository.LocalPath)/modules/*.bicep; do
         [ -e "$filename" ] || continue
-        moduleName = $(basename $filename)
+        moduleName=$(basename $filename)
         echo "Pushing file $moduleName into $(acrUrl)"
         az bicep publish --file $module.FullName --target br:$(acrUrl)/bicep/modules/${$moduleName}
       done
