@@ -21,5 +21,5 @@ steps:
         [ -e "$filename" ] || continue
         moduleName=$(basename $filename)
         echo "Pushing file $moduleName into ${{ parameters.acrUrl }}"
-        az bicep publish --file $module.FullName --target br:${{ parameters.acrUrl }}/bicep/modules/${$moduleName}
+        az bicep publish --file $module.FullName --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName
       done
