@@ -20,6 +20,6 @@ steps:
       for filename in $(Build.Repository.LocalPath)/modules/*.bicep; do
         [ -e "$filename" ] || continue
         moduleName=$(basename $filename)
-        echo "Pushing file $moduleName into $(acrUrl)"
-        az bicep publish --file $module.FullName --target br:$(acrUrl)/bicep/modules/${$moduleName}
+        echo "Pushing file $moduleName into ${{ parameters.acrUrl }}"
+        az bicep publish --file $module.FullName --target br:${{ parameters.acrUrl }}/bicep/modules/${$moduleName}
       done
