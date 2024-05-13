@@ -17,10 +17,7 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      for file in $(Build.Repository.LocalPath)/*; do
-        echo "${file##*/}"
-      done    
-      for filename in $(Build.Repository.LocalPath)/.azuredevops/templates/*.bicep; do
+      for filename in $(Build.Repository.LocalPath)/modules/*.bicep; do
         [ -e "$filename" ] || continue
         moduleName = $(basename $filename)
         echo "Pushing file $moduleName into $(acrUrl)"
