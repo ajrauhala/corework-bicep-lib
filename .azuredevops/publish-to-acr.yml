@@ -17,9 +17,10 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      for filename in $(Build.Repository.LocalPath)/modules/*.bicep; do
-        [ -e "$filename" ] || continue
-        moduleName=$(basename $filename)
+      for path in $(Build.Repository.LocalPath)/modules/*.bicep; do
+        [ -e "$path" ] || continue
+        fileName=$(basename $path)
+        moduleName="${filename%.*}:v1"
         echo "Pushing file $moduleName into ${{ parameters.acrUrl }}"
         az bicep publish --file $module.FullName --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName
       done
