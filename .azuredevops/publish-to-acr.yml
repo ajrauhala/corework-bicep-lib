@@ -22,5 +22,5 @@ steps:
         fileName=$(basename $filePath)
         moduleName="${fileName%.*}:v1"
         echo "Pushing file $filePath as $moduleName into ${{ parameters.acrUrl }}"
-        az bicep publish --file $filePath --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName
+        az bicep publish --file $filePath --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName --force
       done
