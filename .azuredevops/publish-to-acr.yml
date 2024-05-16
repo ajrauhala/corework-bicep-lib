@@ -20,7 +20,8 @@ steps:
       for filePath in $(Build.Repository.LocalPath)/modules/*.bicep; do
         [ -e "$filePath" ] || continue
         fileName=$(basename $filePath)
-        moduleName="${fileName%.*}:v1"
-        echo "Pushing file $filePath as $moduleName into ${{ parameters.acrUrl }}"
-        az bicep publish --file $filePath --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName --force
+        moduleName="${fileName%.*}"
+        moduleTag=":v1"
+        echo "Pushing file $filePath as $moduleName$moduleTag into ${{ parameters.acrUrl }}"
+        az bicep publish --file $filePath --target br:${{ parameters.acrUrl }}/bicep/modules/$moduleName$moduleTag --force
       done
