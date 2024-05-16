@@ -8,12 +8,15 @@ parameters:
 - name: acrUrl
   type: string
   default: acrdevopscore2024.azurecr.io
+- name: serviceConnectionName
+  type: string
+  default: "serviceconn-vssub"
 steps:
 - template: ./templates/install-azure-cli.yml
 - task: AzureCLI@2
   displayName: "publish bicep files to ACR"
   inputs:
-    azureSubscription: 'serviceconn-vssub'
+    azureSubscription: "${{ parameters.serviceConnectionName }}"
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |

@@ -12,4 +12,4 @@ steps:
               sudo tee /etc/apt/sources.list.d/azure-cli.list
           sudo apt-get --assume-yes update
           sudo apt-get --assume-yes install azure-cli
-      displayName: "install Azure CLI"
+      displayName: "install az cli"

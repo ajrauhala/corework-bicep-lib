@@ -1,18 +1,24 @@
 # Introduction 
-This is a project for demonstrating a private Bicep module registry using Azure Container Registry. 
+This is a project for demonstrating a private Bicep module registry using Azure Container Registry.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Create an Azure Container Registry instance
-2.	...
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Pre-requisities
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+- An Azure subscription and a resource group
+- Azure DevOps organization and project
+- An Azure DevOps service connection able to deploy to the targeted resource group
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Prepare
+
+1. Duplicate this repository into a repository of your own.
+2. Change the pool definition of each yml file in .azuredevops folder to match the agent pool you are using.
+3. Create pipelines based on the following yaml files:
+    - ./azuredevops/acr.yml
+    - ./azuredevops/push-to-acr.yml
+4. Run the acr.yml pipeline to create an ACR instance in your resource group.
+5. Assing your service connection principal ACR push and ACR pull roles to the ACR instance.
+
+## Push bicep modules to ACR
+
+## Use bicep modules from ACR
