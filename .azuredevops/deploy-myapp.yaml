@@ -1,24 +1,18 @@
 trigger: none
 
 parameters:
-- name: subscriptionId
+- name: location
   type: string
-  default: "d74666f0-bce7-4f76-bb70-c58f3b3c7bbe"
+  default: "westeurope"
+- name: resourceGroupName
+  type: string
+  default: "rg-myapp"
 - name: serviceConnectionName
   type: string
   default: "serviceconn-vssub"
-- name: resourceGroupName
+- name: subscriptionId
   type: string
-  default: "rg-devops-infra"
-- name: location
-  type: string
-  default: "West Europe"
-- name: acrName
-  type: string
-  default: "acrdevopscore2024"
-- name: acrSku
-  type: string
-  default: 'Premium'
+  default: "d74666f0-bce7-4f76-bb70-c58f3b3c7bbe"
 
 pool:
   name: vmss-devops-infra-01
@@ -26,7 +20,7 @@ pool:
 steps:
 - template: ./templates/install-azure-cli.yml
 - task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'deploy container registry'
+  displayName: 'deploy app service plan'
   inputs:
     deploymentScope: 'Resource Group'
     action: 'Create Or Update Resource Group'
@@ -35,6 +29,7 @@ steps:
     resourceGroupName: ${{ parameters.resourceGroupName}}
     location: ${{ parameters.location }}
     templateLocation: "Linked artifact"
-    csmFile: "**/modules/container-registry.bicep"
-    overrideParameters: "-name ${{ parameters.acrName }} -sku ${{ parameters.acrSku}}"
+    csmFile: "./myapp-infra.bicep"
     deploymentMode: Incremental
+
+  
