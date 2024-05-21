@@ -10,6 +10,7 @@ parameters:
 - name: serviceConnectionName
   type: string
   default: "serviceconn-vssub"
+  
 steps:
 - template: ./templates/install-azure-cli.yml
 - task: AzureCLI@2

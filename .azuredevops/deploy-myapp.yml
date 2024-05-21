@@ -20,7 +20,7 @@ pool:
 steps:
 - template: ./templates/install-azure-cli.yml
 - task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'deploy app service plan'
+  displayName: 'deploy myapp'
   inputs:
     deploymentScope: 'Resource Group'
     action: 'Create Or Update Resource Group'
